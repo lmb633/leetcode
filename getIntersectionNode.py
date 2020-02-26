@@ -34,6 +34,17 @@ class Solution(object):
             headb = headb.next
         return None
 
+
+class BestSolution(object):
+    def getIntersectionNode(self, headA, headB):
+        if headA is None or headB is None:
+            return None
+        heada = headA
+        headb = headB
+        while heada != headb:
+            heada = headB if heada is None else heada.next
+            headb = headA if headb is None else headb.next
+        return heada
         """
         :type head1, head1: ListNode
         :rtype: ListNode
