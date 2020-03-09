@@ -20,6 +20,6 @@ class Solution(object):
             root2 = root2.right
             depth_right += 1
         if depth_right == depth_left:
-            return 1 + 2 * (2 ** depth_left - 1)
+            return 2 ** (depth_left + 1) - 1
         else:
-            return 1 + self.countNodes(root.left) + 1 + self.countNodes(root.right)
+            return 1 + self.countNodes(root.left) + self.countNodes(root.right)
