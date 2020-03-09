@@ -30,6 +30,6 @@ class Solution(object):
             return self.find(nums, i + 1, right, k)
 
 
-a = [3,2,3,1,2,4,5,5,6]
+a = [3, 2, 3, 1, 2, 4, 5, 5, 6]
 solution = Solution()
 print('result', solution.findKthLargest(a, 4))
