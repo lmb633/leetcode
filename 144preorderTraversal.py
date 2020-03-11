@@ -17,3 +17,21 @@ class Solution(object):
         result.append(root.val)
         self.preorder(root.left, result)
         self.preorder(root.right, result)
+
+
+class Solution2(object):
+    def preorderTraversal(self, root):
+        if root is None:
+            return []
+        result = []
+        stack = []
+        while True:
+            while root is not None:
+                result.append(root.val)
+                stack.append(root)
+                root = root.left
+            root = stack.pop()
+            root = root.right
+            if not stack and root is None:
+                break
+        return result
