@@ -26,3 +26,23 @@ class Solution(object):
             flag = False
 
         return left and right and flag, left_min if left_min is not None else root.val, right_max if right_max is not None else root.val
+
+
+class Solution2(object):
+    def isValidBST(self, root):
+        if root is None:
+            return True
+        stack = []
+        last = -2 ** 32
+        while True:
+            while root is not None:
+                stack.append(root)
+                root = root.left
+            root = stack.pop()
+            # print(root.val, last)
+            if root.val <= last:
+                return False
+            last = root.val
+            root = root.right
+            if not stack and root is None:
+                return True
