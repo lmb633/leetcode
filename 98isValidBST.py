@@ -33,7 +33,7 @@ class Solution2(object):
         if root is None:
             return True
         stack = []
-        last = -2 ** 32
+        last = float('-inf')
         while True:
             while root is not None:
                 stack.append(root)
@@ -46,3 +46,20 @@ class Solution2(object):
             root = root.right
             if not stack and root is None:
                 return True
+
+
+class Solution3(object):
+    def isValidBST(self, root):
+        result = self.isvalid(root, float('-inf'), float('inf'))
+        return result
+
+    def isvalid(self, root, lower, higher):
+        if root is None:
+            return True
+        if higher <= root.val or root.val <= lower:
+            return False
+        if not self.isvalid(root.left, lower, root.val):
+            return False
+        if not self.isvalid(root.right, root.val, higher):
+            return False
+        return True
