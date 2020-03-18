@@ -36,6 +36,22 @@ class Solution2(object):
         # print(result)
         return result[length][sum_]
 
+# 大神方法 空间复杂度O(n)
+class Solution3(object):
+    def canPartition(self, nums):
+        sum_ = sum(nums)
+        length = len(nums)
+        if sum_ % 2 == 1:
+            return False
+        sum_ = sum_ // 2
+        result = [False, ] * (sum_ + 1)
+        result[0] = True
+        for i in range(0, length):
+            for j in range(sum_, 0, -1):
+                if nums[i] <= j:
+                    result[j] = result[j] or result[j - nums[i]]
+        return result[sum_]
+
 
         """
         :type nums: List[int]
