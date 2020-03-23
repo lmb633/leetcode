@@ -31,3 +31,10 @@ node2=TreeNode(0)
 print(hash(node2))
 print(id(node2),id(node1))
 print(node1==node2)
+
+a=[1,2,3]
+b=[4,5]
+c=a+b
+print(c)
+b[0]=100
+print(c,b)
