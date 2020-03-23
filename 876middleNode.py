@@ -17,7 +17,21 @@ class Solution(object):
             head=head.next
         return head
 
-
+class Solution2(object):
+    def middleNode(self, head):
+        head0 = head
+        head1 = head
+        if head0 is None:
+            return None
+        head1 = head1.next
+        while head1 is not None:
+            head0 = head0.next
+            head1 = head1.next
+            if head1 is not None:
+                head1 = head1.next
+            else:
+                break
+        return head0
         """
         :type head: ListNode
         :rtype: ListNode
