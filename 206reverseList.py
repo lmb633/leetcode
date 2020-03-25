@@ -4,6 +4,9 @@ class ListNode(object):
         self.next = None
 
 
+import time
+
+
 class Solution(object):
     def reverseList(self, head):
         if head is None or head.next is None:
@@ -48,7 +51,15 @@ class Solution3(object):
         return head, head0
 
 
-import time
+class Solution4(object):
+    def reverseList(self, head):
+        if head is None or head.next is None:
+            return head
+        head0 = self.reverseList(head.next)
+        head.next.next = head
+        head.next = None
+        return head0
+
 
 node1 = ListNode(1)
 node2 = ListNode(2)
@@ -58,7 +69,7 @@ node1.next = node2
 node2.next = node3
 node3.next = node4
 
-solution = Solution3()
+solution = Solution4()
 head = solution.reverseList(node1)
 while head is not None:
     print(head.val)
