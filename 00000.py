@@ -38,3 +38,8 @@ c=a+b
 print(c)
 b[0]=100
 print(c,b)
+
+
+
+a= [[]]
+print(len(a))
