@@ -1,74 +1,4 @@
-# 选择排序
-def selcet_sort(nums):
-    length = len(nums)
-    for i in range(length):
-        min_idx = i
-        for j in range(i + 1, length):
-            if nums[j] < nums[min_idx]:
-                min_idx = j
-        temp = nums[min_idx]
-        nums[min_idx] = nums[i]
-        nums[i] = temp
-
-
-# 冒泡排序
-def bubble_sort(nums):
-    length = len(nums)
-    for i in range(length):
-        flag = False
-        for j in range(1, length - i):
-            if nums[j - 1] > nums[j]:
-                temp = nums[j - 1]
-                nums[j - 1] = nums[j]
-                nums[j] = temp
-                flag = True
-        if not flag:
-            break
-
-
-# 插入排序
-def insert_sort(nums):
-    length = len(nums)
-    for i in range(1, length):
-        temp = nums[i]
-        j = i
-        while j > 0:
-            if temp < nums[j - 1]:
-                nums[j] = nums[j - 1]
-                j -= 1
-            else:
-                break
-        nums[j] = temp
-
-
-# 快速排序
-def quick_sort(nums):
-    def sort(nums, left0, right0):
-        if left0 >= right0:
-            return
-        mid = nums[left0]
-        left = left0
-        right = right0
-        while left < right:
-            while nums[right] >= mid and left < right:
-                right -= 1
-            if left < right:
-                nums[left] = nums[right]
-                left += 1
-            while nums[left] < mid and left < right:
-                left += 1
-            if left < right:
-                nums[right] = nums[left]
-                right -= 1
-        nums[left] = mid
-
-        sort(nums, left0, left - 1)
-        sort(nums, left + 1, right0)
-
-    sort(nums, 0, len(nums) - 1)
-
-
-# 归并排序
+# 二路归并排序
 def merge_sort(nums, i, j):
     if i == j:
         return [nums[i]]
@@ -89,6 +19,27 @@ def merge_sort(nums, i, j):
     if j < len(right):
         result.extend(right[j:])
     return result
+
+
+# 快排
+def quick_sort(nums, low, high):
+    if low >= high:
+        return
+    i = low
+    j = high
+    temp = nums[i]
+    while i < j:
+        while i < j and nums[j] > temp:
+            j -= 1
+        if i < j:
+            nums[i] = nums[j]
+        while i < j and nums[i] <= temp:
+            i += 1
+        if i < j:
+            nums[j] = nums[i]
+    nums[i] = temp
+    quick_sort(nums, low, i - 1)
+    quick_sort(nums, i + 1, high)
 
 
 import heapq
@@ -150,7 +101,7 @@ def bucket_sort(nums):
     return result
 
 
-# 希尔排序
+# shell排序
 def shell_sort(nums):
     length = len(nums)
     gap = length // 2
@@ -182,6 +133,46 @@ def count_sort(nums):
     return result
 
 
-a = [5, 3, 1, 2, 9, 4, 7, 3, 5, 2, 1, 9, 4, 2, 1]
-shell_sort(a)
-print(a)
+# 后面三种会超时
+
+# 冒泡
+def bubble_sort(nums):
+    for i in range(len(nums)):
+        flag = False
+        for j in range(1, len(nums) - i):
+            if nums[j] < nums[j - 1]:
+                nums[j], nums[j - 1] = nums[j - 1], nums[j]
+                flag = True
+        if not flag:
+            break
+    return nums
+
+
+# 插入排序
+def insert_sort(nums):
+    for i in range(1, len(nums)):
+        j = i
+        temp = nums[i]
+        while j > 0:
+            if nums[j - 1] > temp:
+                nums[j] = nums[j - 1]
+                j -= 1
+            else:
+                break
+        nums[j] = temp
+    return nums
+
+
+# 选择排序
+def select_sort(nums):
+    for i in range(len(nums)):
+        idx = i
+        for j in range(i + 1, len(nums)):
+            if nums[j] < nums[idx]:
+                idx = j
+        nums[i], nums[idx] = nums[idx], nums[i]
+    return nums
+
+
+a = [-4, 0, 7, 4, 9, -5, -1, 0, -7, -1]
+print(select_sort(a))
