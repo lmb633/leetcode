@@ -27,19 +27,20 @@ node1.val = 1
 print(hash(node1))
 print(test)
 print(test[node1])
-node2=TreeNode(0)
+node2 = TreeNode(0)
 print(hash(node2))
-print(id(node2),id(node1))
-print(node1==node2)
+print(id(node2), id(node1))
+print(node1 == node2)
 
-a=[1,2,3]
-b=[4,5]
-c=a+b
+a = [1, 2, 3]
+b = [4, 5]
+c = a + b
 print(c)
-b[0]=100
-print(c,b)
+b[0] = 100
+print(c, b)
 
-
-
-a= [[]]
-print(len(a))
+a = [1, 2, 3]
+b = a + [9]
+c = a[:-1]
+a[0] = 10
+print(a, b, c)
