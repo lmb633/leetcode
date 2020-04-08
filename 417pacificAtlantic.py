@@ -9,13 +9,13 @@ class Solution(object):
         n = len(matrix[0])
         result = []
         succeed = set()
-        for i in range(m):
-            for j in range(n):
-                print(i, j)
-                if self.helper(matrix, i, j, m - 1, n - 1, succeed):
-                    print(True)
-                    result.append([i, j])
-                    succeed.add((i, j))
+        points = self.cicle(matrix)
+        for i, j in points:
+            print(i, j)
+            if self.helper(matrix, i, j, m - 1, n - 1, succeed):
+                print(True)
+                result.append([i, j])
+                succeed.add((i, j))
         return result
 
     def helper(self, matrix, i, j, m, n, succeed):
@@ -56,26 +56,27 @@ class Solution(object):
                 q.put((x, y + 1))
         return False
 
-
-def cicle(matrix):
-    m = len(matrix)
-    n = len(matrix[0])
-    min_ = min(m, n)
-    k = 0
-    result = []
-    while min_ - 2 * (k) > 0:
-        for i in range(k, n - k):
-            result.append(matrix[k][i])
-        for i in range(k + 1, m - 1 - k):
-            result.append(matrix[i][n - 1 - k])
-        if m - 1 - k > k:
-            for i in range(n - 1 - k, k - 1, -1):
-                result.append(matrix[m - 1 - k][i])
-        if n - 1 - k > k:
-            for i in range(m - 2 - k, k, -1):
-                result.append(matrix[i][k])
-        k += 1
-    return result
+    def cicle(self, matrix):
+        if not matrix:
+            return []
+        m = len(matrix)
+        n = len(matrix[0])
+        min_ = min(m, n)
+        k = 0
+        result = []
+        while min_ - 2 * k > 0:
+            for i in range(k, n - k):
+                result.append((k, i))
+            for i in range(k + 1, m - 1 - k):
+                result.append((i, n - 1 - k))
+            if m - 1 - k > k:
+                for i in range(n - 1 - k, k - 1, -1):
+                    result.append((m - 1 - k, i))
+            if n - 1 - k > k:
+                for i in range(m - 2 - k, k, -1):
+                    result.append((i, k))
+            k += 1
+        return result
 
 
 if __name__ == '__main__':
@@ -86,6 +87,5 @@ if __name__ == '__main__':
          [13, 12, 11, 10, 9]]
     # a = [[1, 2],
     #      [3, 4]]
-    print(cicle(a))
-    # solution = Solution()
-    # print(solution.pacificAtlantic(a))
+    solution = Solution()
+    print(solution.pacificAtlantic(a))
