@@ -31,16 +31,12 @@ node2 = TreeNode(0)
 print(hash(node2))
 print(id(node2), id(node1))
 print(node1 == node2)
+import numpy as np
 
-a = [1, 2, 3]
-b = [4, 5]
-c = a + b
-print(c)
-b[0] = 100
-print(c, b)
+data = np.array([[[1, 2], [3, 4]], [[5, 6], [7, 8]], [[9, 10], [11, 12]]])
+print(data[..., ::-1, ::])
+data.transpose()
 
-a = [1, 2, 3]
-b = a + [9]
-c = a[:-1]
-a[0] = 10
-print(a, b, c)
+a = torch.Tensor([[[1, 2], [3, 4]], [[5, 6], [7, 8]], [[9, 10], [11, 12]]])
+b = torch.Tensor([[[1, 2], [3, 4]], [[5, 6], [7, 8]], [[9, 10], [11, 12]]])
+print(a*b)
