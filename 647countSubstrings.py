@@ -20,8 +20,3 @@ class Solution(object):
         for l in dp:
             result += sum(l)
         return result
-
-        """
-        :type s: str
-        :rtype: int
-        """
