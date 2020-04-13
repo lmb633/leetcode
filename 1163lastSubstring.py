@@ -66,3 +66,31 @@ class Solution2(object):
             # print(char_idx,temp_char)
             k += 1
         return s[char_idx[0]:-1]
+
+
+# 双指针法
+class Solution3(object):
+    def lastSubstring(self, s):
+        length = len(s)
+        cur_max = length - 1
+        left = length - 2
+        while left >= 0:
+            if s[left] > s[cur_max]:
+                cur_max = left
+            elif s[left] == s[cur_max]:
+                while left - 1 >= 0 and s[left - 1] == s[left]:
+                    left -= 1
+                flag = 0
+                i = 1
+                while cur_max + i < length:
+                    if s[cur_max + i] > s[left + i]:
+                        flag = 1
+                        break
+                    elif s[cur_max + i] < s[left + i]:
+                        break
+                    i += 1
+                if flag == 0:
+                    cur_max = left
+            left -= 1
+
+        return s[cur_max:]

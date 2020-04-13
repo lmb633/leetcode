@@ -14,7 +14,7 @@ class Solution(object):
             i += 1
             j += 1
         while j < lens and i <= lens - lent:
-            while not self.check(strlist)and j<lens:
+            while not self.check(strlist) and j < lens:
                 if s[j] in t:
                     strlist[s[j]] = strlist[s[j]] - 1
                 j += 1
