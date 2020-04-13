@@ -1,6 +1,8 @@
 class Solution(object):
     def longestPalindromeSubseq(self, s):
         length = len(s)
+        if length < 1:
+            return 0
         dp = [[0] * length for _ in range(length)]
         for i in range(length):
             dp[i][i] = 1
