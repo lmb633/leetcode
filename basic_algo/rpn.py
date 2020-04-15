@@ -2,6 +2,7 @@ def get_rpn(tokens):
     op = {'+': 1, '-': 1, '*': 2, '/': 2, '(': 0}
     stack = []
     result = []
+    tokens = split_str(tokens)
     for token in tokens:
         if token.isdigit():
             result.append(token)
@@ -32,6 +33,26 @@ def get_rpn(tokens):
     return result
 
 
-tokens = '(1+2)*(3+4)'
+def split_str(tokens):
+    tokens = tokens.replace(' ', "")
+    i = 0
+    j = 0
+    result = []
+    while j < len(tokens):
+        if tokens[j].isdigit():
+            j += 1
+        else:
+            if i == j:
+                result.append(tokens[i])
+            else:
+                result.append(tokens[i:j])
+                result.append(tokens[j])
+            j += 1
+            i = j
+    return result
+
+
+tokens = '(1111 + 22222 )* (1113+4)'
 # tokens = '(1+2*(4-3)+6/2)'
-print(get_rpn(tokens))
+print(split_str(tokens))
+# print(get_rpn(tokens))
