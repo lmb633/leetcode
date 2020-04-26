@@ -31,24 +31,22 @@ class Solution2(object):
         x, y = 0, 0
         max_len = 1
         length = len(s)
-        for c in range(length - 1):
-            i, j = c, c
+
+        def helper(s, i, j):
             while i >= 0 and j < length:
                 if s[i] != s[j]:
                     break
                 i -= 1
                 j += 1
+            return i, j
+
+        for c in range(length - 1):
+            i, j = helper(s, c, c)
+            if s[c] == s[c + 1]:
+                i1, j1 = helper(s, c, c + 1)
+                if j1 - i1 > j - i:
+                    i, j = i1, j1
             if j - i - 1 > max_len:
                 max_len = j - i - 1
                 x, y = i + 1, j - 1
-            if s[c] == s[c + 1]:
-                i, j = c, c + 1
-                while i >= 0 and j < length:
-                    if s[i] != s[j]:
-                        break
-                    i -= 1
-                    j += 1
-                if j - i - 1 > max_len:
-                    max_len = j - i - 1
-                    x, y = i + 1, j - 1
         return s[x:y + 1]
