@@ -31,6 +31,21 @@ class Solution2(object):
         return profit
 
 
-solution = Solution()
-a = [7, 1]
+# 状态机
+class Solution3(object):
+    def maxProfit(self, prices):
+        length = len(prices)
+        dp = [[0, 0] for i in range(length + 1)]
+        print(dp)
+        dp[0][0] = 0
+        dp[0][1] = float('-inf')
+        for i in range(length):
+            dp[i + 1][0] = max(dp[i][0], dp[i][1] + prices[i])
+            dp[i + 1][1] = max(dp[i][1], -prices[i])
+        print(dp)
+        return dp[-1][0]
+
+
+solution = Solution3()
+a = [7, 1, 5, 3, 6, 4]
 print(solution.maxProfit(a))
