@@ -26,5 +26,5 @@ class Solution(object):
 
 
 solution = Solution()
-a = [3, 2, 6, 5, 0, 3]
+a = [1, 3, 2, 8, 4, 9]
 print(solution.maxProfit(a, 2))
