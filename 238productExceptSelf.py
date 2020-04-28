@@ -14,3 +14,20 @@ class Solution(object):
         for i in range(1, length - 1):
             result[i] = left[i - 1] * right[i + 1]
         return result
+
+
+# 除返回数组外，不使用额外的空间
+class Solution2(object):
+    def productExceptSelf(self, nums):
+        length = len(nums)
+        right = [1] * length
+        right[-1] = nums[-1]
+        for i in range(length - 2, -1, -1):
+            right[i] = right[i + 1] * nums[i]
+        for i in range(1, length):
+            nums[i] = nums[i - 1] * nums[i]
+        right[0] = right[1]
+        for i in range(1, length - 1):
+            right[i] = nums[i - 1] * right[i + 1]
+        right[-1] = nums[-2]
+        return right
