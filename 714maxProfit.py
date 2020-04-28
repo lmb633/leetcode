@@ -5,6 +5,7 @@ class Solution(object):
         sale = 0
         buy = float('-inf')
         for i in range(length):
+            print(sale,buy)
             temp = sale
             sale = max(sale, buy + prices[i])
             buy = max(buy, temp - prices[i] - fee)
@@ -18,7 +19,7 @@ class Solution(object):
         buy_in = prices[0]
         temp = 0
         for i in range(1, length):
-            print(buy_in, prices[i], temp, profit)
+            # print(buy_in, prices[i], temp, profit)
             if prices[i] < buy_in or prices[i] + fee <= buy_in + temp:
                 buy_in = prices[i]
                 if temp - fee > 0:
