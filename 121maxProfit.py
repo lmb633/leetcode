@@ -15,6 +15,22 @@ class Solution(object):
         return max_profit
 
 
+class Solution2(object):
+    def maxProfit(self, prices):
+        if not prices:
+            return 0
+        buy = prices[0]
+        profit = 0
+        for i in range(1, len(prices)):
+            if prices[i] <= buy:
+                buy = prices[i]
+            else:
+                temp = prices[i] - buy
+                if temp > profit:
+                    profit = temp
+        return profit
+
+
 solution = Solution()
-a = [7,1]
+a = [7, 1]
 print(solution.maxProfit(a))
